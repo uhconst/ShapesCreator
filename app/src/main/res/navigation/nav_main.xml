@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/editorFragment">
+
+    <fragment
+        android:id="@+id/editorFragment"
+        android:name="com.uhc.shapescreator.editor.EditorFragment"
+        android:label="EditorFragment"
+        tools:layout="@layout/editor_fragment" />
+
+</navigation>
