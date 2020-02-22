@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ShapesCreator</string>
+
+    <string name="square">Square</string>
+    <string name="circle">Circle</string>
+    <string name="triangle">Triangle</string>
+    <string name="undo">Undo</string>
+    <string name="stats">Stats</string>
 </resources>
