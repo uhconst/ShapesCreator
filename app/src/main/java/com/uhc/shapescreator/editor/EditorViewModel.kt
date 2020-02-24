@@ -13,22 +13,16 @@ class EditorViewModel : BaseViewModel() {
     private val _events = EventLiveData<Events>()
     val events: LiveData<Events> get() = _events
 
-    private var widthMax: Int = 0
-    private var heightMax: Int = 0
-
     fun onClickSquare() {
-        _modelsList.add(generateSquareShape())
-        _events.postValue(Events.UPDATE_SHAPE_CANVAS)
+        addNewShapeCanvas(ShapeType.SQUARE)
     }
 
     fun onClickCircle() {
-        _modelsList.add(generateCircleShape())
-        _events.postValue(Events.UPDATE_SHAPE_CANVAS)
+        addNewShapeCanvas(ShapeType.CIRCLE)
     }
 
     fun onClickTriangle() {
-        _modelsList.add(generateTriangleShape())
-        _events.postValue(Events.UPDATE_SHAPE_CANVAS)
+        addNewShapeCanvas(ShapeType.TRIANGLE)
     }
 
     fun onClickUndo() {
@@ -40,37 +34,17 @@ class EditorViewModel : BaseViewModel() {
         _events.postValue(Events.GO_TO_STATS)
     }
 
-//    fun setWidthAndHeight(width: Int, height: Int) {
-//        widthMax = width
-//        heightMax = height
-//    }
-
-    fun generateSquareShape(): ShapeModel {
-        return ShapeModel(
-            radius = 0f,
-            centreX = 0f,
-            centreY = 0f,
-            shapeType = ShapeType.SQUARE
-        )
+    private fun addNewShapeCanvas(shapeType: ShapeType) {
+        _modelsList.add(generateNewShape(shapeType))
+        _events.postValue(Events.UPDATE_SHAPE_CANVAS)
     }
 
-    fun generateCircleShape(): ShapeModel {
-        return ShapeModel(
-            radius = 140f,
+    private fun generateNewShape(shapeType: ShapeType) =
+        ShapeModel(
             centreX = Random.nextInt(0, 1200).toFloat(),
             centreY = Random.nextInt(0, 1200).toFloat(),
-            shapeType = ShapeType.CIRCLE
+            shapeType = shapeType
         )
-    }
-
-    fun generateTriangleShape(): ShapeModel {
-        return ShapeModel(
-            radius = 0f,
-            centreX = 0f,
-            centreY = 0f,
-            shapeType = ShapeType.CIRCLE
-        )
-    }
 
     enum class Events {
         UPDATE_SHAPE_CANVAS,

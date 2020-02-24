@@ -8,14 +8,20 @@ import android.view.View
 class ShapeView(context: Context?, attrs: AttributeSet?) :
     View(context, attrs) {
 
-    private val drawPaint: Paint = Paint()
+    private val drawSquarePaint: Paint = Paint()
+    private val drawCirclePaint: Paint = Paint()
+    private val drawTrianglePaint: Paint = Paint()
 
-    private var canvas: Canvas? = null
+    private var path = Path()
 
     private lateinit var modelsList: List<ShapeModel>
 
     private fun setupPaint() {
-        drawPaint.color = Color.BLUE
+        drawSquarePaint.color = Color.BLUE
+        drawCirclePaint.color = Color.GREEN
+        drawTrianglePaint.color = Color.RED
+        drawTrianglePaint.style = Paint.Style.FILL
+        drawTrianglePaint.isAntiAlias = true
     }
 
     init {
@@ -24,23 +30,37 @@ class ShapeView(context: Context?, attrs: AttributeSet?) :
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-//        this.canvas = canvas
 
         if (this::modelsList.isInitialized) {
             modelsList.forEach { shapeModel ->
                 shapeModel.apply {
                     when (shapeType) {
+                        /** Square */
                         ShapeType.SQUARE -> {
-                            val gapRect = RectF(
-                                100f,
-                                100f,
-                                200f,
-                                200f
-                            )
-                            canvas.drawRect(gapRect, drawPaint)
+                            canvas.drawRect(toRectF(), drawSquarePaint)
                         }
-                        ShapeType.CIRCLE -> canvas.drawCircle(centreX, centreY, radius, drawPaint)
-                        ShapeType.TRIANGLE -> TODO()
+                        /** Circle */
+                        ShapeType.CIRCLE -> canvas.drawCircle(
+                            centreX,
+                            centreY,
+                            SHAPE_WIDTH,
+                            drawCirclePaint
+                        )
+                        /** Triangle */
+                        ShapeType.TRIANGLE -> {
+                            /** Top */
+                            path.moveTo(centreX, centreY - SHAPE_WIDTH)
+                            /** Bottom left */
+                            path.lineTo(centreX - SHAPE_WIDTH, centreY + SHAPE_WIDTH)
+                            /** Bottom right */
+                            path.lineTo(centreX + SHAPE_WIDTH, centreY + SHAPE_WIDTH)
+                            /** Back to top */
+                            path.lineTo(centreX, centreY - SHAPE_WIDTH)
+
+                            path.close()
+
+                            canvas.drawPath(path, drawTrianglePaint)
+                        }
                     }
                 }
             }
@@ -50,5 +70,16 @@ class ShapeView(context: Context?, attrs: AttributeSet?) :
     fun update(modelsList: List<ShapeModel>) {
         this.modelsList = modelsList
         invalidate()
+    }
+
+    private fun ShapeModel.toRectF() = RectF(
+        centreX,
+        centreX,
+        centreX + SHAPE_WIDTH * 2,
+        centreX + SHAPE_WIDTH * 2
+    )
+
+    companion object {
+        private const val SHAPE_WIDTH = 150f
     }
 }
