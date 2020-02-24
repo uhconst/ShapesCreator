@@ -36,4 +36,9 @@ class EditorFragment : BaseFragment<EditorFragmentBinding>() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        shape_view.update(viewModel.modelsList)
+    }
+
 }
