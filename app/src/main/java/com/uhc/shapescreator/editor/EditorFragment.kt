@@ -5,6 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.uhc.shapescreator.R
 import com.uhc.shapescreator.databinding.EditorFragmentBinding
+import com.uhc.shapescreator.stats.toStatsModel
 import com.uhc.shapescreator.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.editor_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -25,8 +26,14 @@ class EditorFragment : BaseFragment<EditorFragmentBinding>() {
         viewModel.events.observe(this, Observer { event ->
             when (event) {
                 EditorViewModel.Events.UPDATE_SHAPE_CANVAS -> shape_view.update(viewModel.modelsList)
-                EditorViewModel.Events.GO_TO_STATS -> navController?.navigate(EditorFragmentDirections.actionShowStatsFragment())
+                EditorViewModel.Events.GO_TO_STATS ->
+                    navController?.navigate(
+                        EditorFragmentDirections.actionShowStatsFragment(
+                            viewModel.modelsList.toStatsModel()
+                        )
+                    )
             }
         })
     }
+
 }

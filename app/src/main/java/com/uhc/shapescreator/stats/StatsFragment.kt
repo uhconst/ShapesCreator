@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.uhc.shapescreator.R
 import com.uhc.shapescreator.databinding.StatsFragmentBinding
+import com.uhc.shapescreator.stats.StatsFragmentArgs.Companion.fromBundle
 import com.uhc.shapescreator.ui.base.BaseFragment
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -22,9 +23,20 @@ class StatsFragment : BaseFragment<StatsFragmentBinding>() {
         binding.viewModel = viewModel
 
         setupStatsList()
+        getArgs()
     }
 
     private fun setupStatsList() {
         binding.rvStats.adapter = statsAdapter
+    }
+
+    private fun getArgs() {
+        arguments?.let {
+            statsAdapter.notifyChanged(
+                fromBundle(it)
+                    .statsList
+                    .statsList
+            )
+        }
     }
 }

@@ -25,6 +25,13 @@
         android:id="@+id/statsFragment"
         android:name="com.uhc.shapescreator.stats.StatsFragment"
         android:label="StatsFragment"
-        tools:layout="@layout/stats_fragment" />
+        tools:layout="@layout/stats_fragment">
+
+        <argument
+            android:name="statsList"
+            app:argType="com.uhc.shapescreator.stats.StatsModel"
+            app:nullable="false" />
+
+    </fragment>
 
 </navigation>

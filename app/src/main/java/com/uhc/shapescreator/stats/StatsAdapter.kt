@@ -9,7 +9,7 @@ import com.uhc.shapescreator.databinding.StatsListItemBinding
 
 class StatsAdapter : RecyclerView.Adapter<StatsAdapter.ViewHolder>() {
 
-    private val stats = mutableListOf<StatsModel>()
+    private val stats = mutableListOf<SingleStats>()
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): ViewHolder {
         return ViewHolder(
@@ -28,7 +28,7 @@ class StatsAdapter : RecyclerView.Adapter<StatsAdapter.ViewHolder>() {
         holder.bind(stats[position])
     }
 
-    fun notifyChanged(stats: List<StatsModel>) {
+    fun notifyChanged(stats: List<SingleStats>) {
         this.stats.clear()
         this.stats.addAll(stats)
         notifyDataSetChanged()
@@ -37,9 +37,8 @@ class StatsAdapter : RecyclerView.Adapter<StatsAdapter.ViewHolder>() {
     class ViewHolder(private val binding: StatsListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(stats: StatsModel) {
+        fun bind(stats: SingleStats) {
             binding.stats = stats
-            binding.executePendingBindings()
         }
     }
 }
