@@ -8,8 +8,8 @@ data class ShapeModel(
 
 )
 
-enum class ShapeType {
-    SQUARE,
-    CIRCLE,
-    TRIANGLE
+enum class ShapeType(val shapeName: String) {
+    SQUARE("Square"),
+    CIRCLE("Circle"),
+    TRIANGLE("Triangle")
 }

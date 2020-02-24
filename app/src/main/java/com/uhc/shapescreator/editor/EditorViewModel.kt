@@ -36,6 +36,10 @@ class EditorViewModel : BaseViewModel() {
         _events.postValue(Events.UPDATE_SHAPE_CANVAS)
     }
 
+    fun onClickStats() {
+        _events.postValue(Events.GO_TO_STATS)
+    }
+
 //    fun setWidthAndHeight(width: Int, height: Int) {
 //        widthMax = width
 //        heightMax = height
@@ -69,6 +73,7 @@ class EditorViewModel : BaseViewModel() {
     }
 
     enum class Events {
-        UPDATE_SHAPE_CANVAS
+        UPDATE_SHAPE_CANVAS,
+        GO_TO_STATS
     }
 }

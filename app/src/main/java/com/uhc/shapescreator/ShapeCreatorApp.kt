@@ -2,6 +2,8 @@ package com.uhc.shapescreator
 
 import android.app.Application
 import com.uhc.shapescreator.editor.EditorViewModel
+import com.uhc.shapescreator.stats.StatsAdapter
+import com.uhc.shapescreator.stats.StatsViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.dsl.viewModel
@@ -27,5 +29,11 @@ class ShapeCreatorApp : Application() {
 
         /** Editor */
         viewModel { EditorViewModel() }
+
+        /** Stats */
+        viewModel { StatsViewModel() }
+
+        /** Stats Adapter */
+        factory { StatsAdapter() }
     }
 }

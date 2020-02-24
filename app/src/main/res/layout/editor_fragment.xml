@@ -70,6 +70,7 @@
 
             <Button
                 style="@style/ButtonStyle"
+                android:onClick="@{() -> viewModel.onClickStats()}"
                 android:text="@string/stats" />
         </LinearLayout>
 

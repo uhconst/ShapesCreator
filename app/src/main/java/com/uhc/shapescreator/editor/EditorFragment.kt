@@ -25,6 +25,7 @@ class EditorFragment : BaseFragment<EditorFragmentBinding>() {
         viewModel.events.observe(this, Observer { event ->
             when (event) {
                 EditorViewModel.Events.UPDATE_SHAPE_CANVAS -> shape_view.update(viewModel.modelsList)
+                EditorViewModel.Events.GO_TO_STATS -> navController?.navigate(EditorFragmentDirections.actionShowStatsFragment())
             }
         })
     }
