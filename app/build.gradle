@@ -27,15 +27,18 @@ android {
     }
 }
 ext {
-    supportVersion = "1.1.0"
+    supportVersion = "1.2.0"
+    appCompatSupportVersion = "1.1.0"
     koinVersion = "2.0.0"
-    archVersion = "2.0.0"
+    archVersion = "2.2.0"
     constraintVersion = "1.1.3"
     rxKotlinVersion = "2.3.0"
     rxAndroidVersion = "2.1.1"
     koinVersion = "2.0.0"
     espressoVersion = "3.1.1"
     junitVersion = "4.12"
+    navigationTestVersion = '1.2.2'
+    archTestVersion = "2.0.0"
     mockitoAndroidVersion = "2.27.0"
     mockitoAndroidVersion = "2.27.0"
     mockitoKotlinVersion = "2.1.0"
@@ -44,7 +47,7 @@ ext {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    implementation "androidx.appcompat:appcompat:$supportVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatSupportVersion"
     implementation "androidx.core:core-ktx:$supportVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$archVersion"
@@ -57,7 +60,9 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     api "org.mockito:mockito-core:$mockitoAndroidVersion"
-    api "androidx.arch.core:core-testing:$archVersion"
+    api "androidx.arch.core:core-testing:$archTestVersion"
+    api 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation "androidx.fragment:fragment-testing:$navigationTestVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "org.mockito:mockito-android:$mockitoAndroidVersion"
 }
