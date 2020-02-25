@@ -26,8 +26,10 @@ class EditorViewModel : BaseViewModel() {
     }
 
     fun onClickUndo() {
-        _modelsList.removeAt(_modelsList.size - 1)
-        _events.postValue(Events.UPDATE_SHAPE_CANVAS)
+        if (_modelsList.size > 0) {
+            _modelsList.removeAt(_modelsList.size - 1)
+            _events.postValue(Events.UPDATE_SHAPE_CANVAS)
+        }
     }
 
     fun onClickStats() {
