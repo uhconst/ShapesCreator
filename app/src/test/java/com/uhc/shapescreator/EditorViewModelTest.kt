@@ -126,6 +126,4 @@ class EditorViewModelTest {
         // Test
         verify(observerEventsMock).onChanged(EditorViewModel.Events.GO_TO_STATS)
     }
-
-
 }
